@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ניוזלטר חודשי</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* עדכון הרקע הכללי והheader */
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://subtlepatterns.com/patterns/geometry2.png') repeat;
+            background-color: #f5f7fa;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+        }
+
+        header {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 10px 0;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .card {
+            background: transparent;
+            border: 1px solid rgba(33, 147, 176, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(31, 38, 135, 0.1);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            font-size: 1.25em;
+            margin: 0 0 20px 0;
+            padding: 0 0 15px 0;
+            border-bottom: 2px solid #f0f4f8;
+            position: relative;
+        }
+
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+        }
+
+        .button {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 20px rgba(33, 147, 176, 0.3);
+            transition: all 0.3s ease;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(33, 147, 176, 0.5);
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: 'Assistant', sans-serif;
+            text-align: right;
+            direction: rtl;
+            background-color: #f8f9fa;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(33, 147, 176, 0.2);
+            border-radius: 15px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            background: #ffffff;
+            border-color: #2193b0;
+            box-shadow: 0 0 0 4px rgba(33, 147, 176, 0.1);
+            background: #ffffff;
+            border-color: #2193b0;
+            box-shadow: 0 0 0 4px rgba(33, 147, 176, 0.1), inset 0 2px 4px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .category-container {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 15px;
+        }
+
+        .category-container:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .category-header {
+            background: linear-gradient(45deg, #ffffff, #f8f9fa);
+            border: 1px solid rgba(33, 147, 176, 0.1);
+            border-radius: 12px;
+            padding: 15px 25px;
+            font-size: 17px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-header::after {
+            content: '▼';
+            left: 20px;
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        .category-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .category-header:hover {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            transform: translateX(-5px);
+        }
+
+        .category-content {
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .team-member {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .team-member-info {
+            text-align: right;
+        }
+
+        .tips {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border: none;
+            border-right: 4px solid #2193b0;
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .tips strong {
+            color: #2980b9;
+        }
+
+        .center-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .email-subject-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .email-subject {
+            font-size: 16px;
+            color: #2c3e50;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+
+        .center-selection {
+            margin-top: 15px;
+        }
+
+        .center-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .center-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .center-options label:hover {
+            background-color: #f8f9fa;
+        }
+
+        .center-options input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .select-centers-button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .select-centers-button:hover {
+            background-color: #2980b9;
+        }
+
+        .centers-list {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .centers-list.hidden {
+            display: none;
+        }
+
+        .center-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .center-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .center-options label:hover {
+            background-color: #e9ecef;
+        }
+
+        .center-options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .email-subject-wrapper {
+            padding: 10px 0;
+        }
+
+        .email-subject {
+            font-size: 16px;
+            color: #2c3e50;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+
+        .select-centers-button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .select-centers-button:hover {
+            background-color: #2980b9;
+        }
+
+        .centers-list {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .centers-list.hidden {
+            display: none;
+        }
+
+        .center-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .center-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .center-options label:hover {
+            background-color: #e9ecef;
+        }
+
+        .center-options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* סגנונות לסרגל התקדמות */
+        .progress-bar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            z-index: 1000;
+            width: 200px;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: #e0e0e0;
+            bottom: -30px;
+            right: 24px;
+            z-index: 1;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f8f9fa, #e8ecf2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+            border: 2px solid rgba(33, 147, 176, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .step-label {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+            flex-grow: 1;
+        }
+
+        .progress-percentage {
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: 600;
+            min-width: 45px;
+            text-align: left;
+        }
+
+        /* התאמה למסך קטן */
+        @media (max-width: 1200px) {
+            .progress-bar {
+                display: none;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+
+        /* אנימציות לכרטיסיות */
+        .category-container {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* אנימציית מעבר משופרת */
+        .category-container {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* עיצב משופר לותרות קטגוריות */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+
+        .category-icon {
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+        }
+
+        /* משוב ויזואלי משופר */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* התאמה למובייל משופרת */
+        @media (max-width: 768px) {
+            .progress-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .progress-step::after {
+                display: none;
+            }
+
+            .progress-step {
+                flex-direction: row;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .step-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .category-container {
+                margin: 10px;
+            }
+
+            .button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+
+        /* נוסיף סגנונות חדשים */
+        .progress-step.completed .step-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .category-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover .category-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .toast-notification.info {
+            background: #3498db;
+        }
+
+        /* אנימציה לסרגל ההתקדמות */
+        .progress-step {
+            transition: all 0.5s ease;
+        }
+
+        .progress-step.completed::after {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .guide-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border-radius: 20px;
+            padding: 25px 35px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .guide-box h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .guide-box ul {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+
+        .guide-box li {
+            margin: 8px 0;
+            color: #34495e;
+        }
+
+        .guide-box strong {
+            color: #2980b9;
+        }
+
+        /* עדכון הקונטיינר הראשי */
+        .shared-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            margin-bottom: 40px;
+        }
+
+        /* העברת החץ לצד שמאל */
+        .category-header::after {
+            content: '▼';
+            left: 20px;
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        /* התאמת המרווחים */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .shared-container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .category-header {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ניוזלטר חודשי</h1>
+        <p id="current-date"></p>
+        <div class="guide-box">
+            <h3>🎯 מדריך למילוי הניוזלטר</h3>
+            <p>
+                מנהלים יקרים, הטופס שלפניכם נועד לסייע בכתיבת הניוזלטר החודשי ולהציע רעיונות לתכנים אפשריים. 
+                <br><br>
+                <strong>חשוב לדעת:</strong>
+                <ul>
+                    <li>אין צורך למלא את כל הלשוניות - בחרו את התכנים הרלוונטיים עבור המרכז שלכם</li>
+                    <li>הקטגוריות השונות נועדו לעורר השראה ולהציע כיווני כתיבה אפשריים</li>
+                    <li>תוכלו להתמקד בנושאים המשמעותיים ביותר שקרו החודש במרכז שלכם</li>
+                    <li>מומץ לשלב סיפורים אישיים, תמונות והישגים מיוחדים</li>
+                </ul>
+            </p>
+        </div>
+    </header>
+
+    <div class="progress-bar">
+        <div class="progress-step active">
+            <div class="step-icon">📋</div>
+            <div class="step-label">בחירת מרכז</div>
+        </div>
+        <div class="progress-step">
+            <div class="step-icon">👥</div>
+            <div class="step-label">פרטי הצוות</div>
+        </div>
+        <div class="progress-step">
+            <div class="step-icon">📊</div>
+            <div class="step-label">סקירה חודשית</div>
+        </div>
+        <div class="progress-step">
+            <div class="step-icon">🎯</div>
+            <div class="step-label">יעדים ותוכניות</div>
+        </div>
+    </div>
+
+    <div class="container shared-container">
+        <!-- החלק הזה יחליף את החלק של בחירת המרכז הקיים -->
+        <div class="category-container">
+            <div class="card">
+                <div class="email-subject-wrapper">
+                    <h3>נושא המייל:</h3>
+                    <div id="email-subject" class="email-subject">
+                        ניוזלטר חודשי עבור 
+                        <span id="selected-centers-text">-- בחר מרכז --</span>
+                    </div>
+                    <button class="select-centers-button" onclick="toggleCentersList()">בחר מרכזים</button>
+                    <div id="centers-list" class="centers-list hidden">
+                        <div class="center-options">
+                            <label><input type="checkbox" name="center" value="jerusalem"> מרכז יזמות יוניסטרים בויאר ירושלים ע"ש קרל פרייס</label>
+                            <label><input type="checkbox" name="center" value="beer-sheva"> מרכז אלטשולר שחם באר שבע</label>
+                            <label><input type="checkbox" name="center" value="netivot"> מרכז יזמות יוניסטרים נתיבות</label>
+                            <label><input type="checkbox" name="center" value="sderot"> מרכז יוניסטרים שדרות</label>
+                            <label><input type="checkbox" name="center" value="eilat"> מרכז יוניסטרים אילת</label>
+                            <label><input type="checkbox" name="center" value="kfar-chabad"> מרכז יוניסטרים כפר חב"ד</label>
+                            <label><input type="checkbox" name="center" value="kiryat-malachi"> מרכז יוניסטרים קרית מלאכי</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- הכירו את הצוות -->
+        <div class="category-container">
+            <div class="category-header">הכירו את הצוות</div>
+            <div class="category-content">
+                <div class="card">
+                    <div class="team-member">
+                        <div class="team-member-info">
+                            <label for="team-member-name">שם חבר הצוות:</label>
+                            <input type="text" id="team-member-name" placeholder="הכנס את שם חבר הצוות">
+                            
+                            <label for="team-member-description">תיאור:</label>
+                            <textarea id="team-member-description" placeholder="תאר את חבר הצוות, תפקידו והישגיו"></textarea>
+                        </div>
+                    </div>
+                    <button class="button save-button" id="save-team-member">שמור פרטי חבר צוות</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הוסיפו פרטים מעניינים או אנקדוטות על חבר הצוות כדי להוסיף עניין ואישיות למדור.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- סקירה חודשית כללית -->
+        <div class="category-container">
+            <div class="category-header">סקירה חודשית כללית</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>תיאור כללי של החודש האחרון במרכז היזמות</h3>
+                    <textarea id="monthly-overview" placeholder="תאר את החודש האחרון במרכז היזמות"></textarea>
+                    <button class="button save-button" id="save-monthly-overview">שמור סקירה חודשית</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> נסו לשלב סיפורים אישיים או אנקדוטות מעניינות מהחודש האחרון כדי להוסיף עניין ורגש לסקירה.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- פעילויות ואירועים שהתקיימו -->
+        <div class="category-container">
+            <div class="category-header">פעילויות ואירועים שהתקיימו</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>פירוט של הסדנאות, המפגשים, ההרצאות או האירועים המיוחדים שהתקיימו</h3>
+                    <textarea id="activities-events" placeholder="תאר את הפעילויות והאירועים שהתקיימו"></textarea>
+                    <button class="button save-button" id="save-activities-events">שמור פעילויות ואירועים</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הוסיפו תמונות או ציטוטים מהמשתתפים כדי להמחיש את האווירה והחוויה של האירועים.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- התקדמות הקבוצות והמיזמים -->
+        <div class="category-container">
+            <div class="category-header">התקדמות הקבוצות והמיזמים</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>קבוצה א'</h3>
+                    <textarea id="group-a-progress" placeholder="עדכן על התקדמות קבוצה א'"></textarea>
+                    <button class="button save-button" id="save-group-a-progress">שמור התקדמות קבוצה א'</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> שתפו אתגרים שהקבוצה התמודדה איתם וכיצד הם הצליחו להתגבר עליהם. זה יכול להוות השראה לאחרים.
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>קבוצה ב'</h3>
+                    <textarea id="group-b-progress" placeholder="עדכן על התקדמות קבוצה ב'"></textarea>
+                    <button class="button save-button" id="save-group-b-progress">שמור תקדמות קבוצה ב'</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הדגישו את ההישגים של הקבוצה והציבו אותם בהקשר של המטרות שהוגדרו בתחילת החודש.
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>קבוצה ג'</h3>
+                    <textarea id="group-c-progress" placeholder="עדכן על התקדמות קבוצה ג'"></textarea>
+                    <button class="button save-button" id="save-group-c-progress">שור התקדמות קבוצה ג'</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הציגו את התוכניות העתידיות של הקבוצה וכיצד הם מתכוונים להמשיך ולהתקדם.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- מיומנויות וכלים שנרכשו -->
+        <div class="category-container">
+            <div class="category-header">מיומנויות וכלים שנרכשו</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>תיאור של המיומנויות והכלים שהחניכים רכשו</h3>
+                    <textarea id="skills-tools" placeholder="תאר את המיומנויות והכלם שנרכשו"></textarea>
+                    <button class="button save-button" id="save-skills-tools">שמור מיומנויות וכלים</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הדגישו כיצד המיומנויות החדשות תורמות להתקדמות המיזמים ולפיתוח האישי של החניכים.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- יוזמות ייחודיות ופרויקטים מיוחדים -->
+        <div class="category-container">
+            <div class="category-header">יוזמות ייחודיות ופרויקטים מיוחדים</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>תיאור של יזמות או פרויקטים שמייחדים את המרכז</h3>
+                    <textarea id="unique-initiatives" placeholder="תאר את היוזמות והפרויקטים המיוחדים"></textarea>
+                    <button class="button save-button" id="save-unique-initiatives">שמור יוזמות ופרויקטים</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> שפו את המטרות והחזון של היוזמות וכיצד הן משפיעות על הקהילה או החניכים.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- שיתופי פעולה בקהילה -->
+        <div class="category-container">
+            <div class="category-header">שיתופי פעולה בקהילה</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>עדכון על שיתופי פעולה עם הקהילה המקומית</h3>
+                    <textarea id="community-collaborations" placeholder="תאר את שיופ הפעולה עם קהילה"></textarea>
+                    <button class="button save-button" id="save-community-collaborations">שמור שיתופי פעולה</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הציגו את ההשפעה של שיתופי הפעולה על הקהילה וכיצד הם תורמים לחניכים ולמרכז.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- סיפורי הצלחה -->
+        <div class="category-container">
+            <div class="category-header">סיפורי הצלחה</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>הצגת סיפורים אישיים או קבוצתיים המדגישים הצלחות</h3>
+                    <textarea id="success-stories" placeholder="תאר את סיפורי ההצלחה"></textarea>
+                    <button class="button save-button" id="save-success-stories">שמור סיפורי הצלחה</button>
+                    <div class="tips">
+                        <strong>טפ:</strong> שתפו סיפורים מרגשים או יוצאי דופן שמדגישים את ההשפעה של המרכז על החניכים.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- תוכניות ויעדים לעתיד -->
+        <div class="category-container">
+            <div class="category-header">תוכניות ויעדים לעתיד</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>סקירה של התוכניות לחודש הבא או לתקופה הקרובה</h3>
+                    <textarea id="future-plans" placeholder="תאר את התוכניות והיעדים לעתיד"></textarea>
+                    <button class="button save-button" id="save-future-plans">שמור תוכניות ויעדים</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הציגו את האתגרים הצפויים וכיצד אתם מתכננים להתמודד איתם. זה יכול להוות השראה לאחרים.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- הערכה ותודות -->
+        <div class="category-container">
+            <div class="category-header">הערכה ותודות</div>
+            <div class="category-content">
+                <div class="card">
+                    <h3>הבעת תודה והערכה לשותפים, תורמים, מנטורים או חברי צוות</h3>
+                    <textarea id="appreciation-thanks" placeholder="תאר את התודות וההערכה"></textarea>
+                    <button class="button save-button" id="save-appreciation-thanks">שמור הערכה ותודות</button>
+                    <div class="tips">
+                        <strong>טיפ:</strong> הוסיפו ציטוטים או משובים מהחניכים או מהשותפים כדי להמחי את ההשפעה של התמיכה.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- כפתורי פעולה -->
+        <footer>
+            <button class="button" id="download-report">
+                הורד ניוזלטר כקובץ Word
+            </button>
+            <button class="button" id="email-report">
+                שלח נוזלטר במייל
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // עדכון התאריך הנוכחי
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' });
+
+        // פונקציוניות לסעיפים מתקפלים
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                header.classList.toggle('active');
+                
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.display = 'block';
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // פונקציות שמירה עבור שדות טקסט נוספים
+        function addSaveEvent(buttonId, textareaId) {
+            document.getElementById(buttonId).addEventListener('click', () => {
+                const content = document.getElementById(textareaId).value;
+                alert('התוכן נשמר.');
+            });
+        }
+
+        addSaveEvent('save-monthly-overview', 'monthly-overview');
+        addSaveEvent('save-activities-events', 'activities-events');
+        addSaveEvent('save-group-a-progress', 'group-a-progress');
+        addSaveEvent('save-group-b-progress', 'group-b-progress');
+        addSaveEvent('save-group-c-progress', 'group-c-progress');
+        addSaveEvent('save-skills-tools', 'skills-tools');
+        addSaveEvent('save-unique-initiatives', 'unique-initiatives');
+        addSaveEvent('save-community-collaborations', 'community-collaborations');
+        addSaveEvent('save-success-stories', 'success-stories');
+        addSaveEvent('save-future-plans', 'future-plans');
+        addSaveEvent('save-appreciation-thanks', 'appreciation-thanks');
+
+        // פונקציה ליצירת תוכן הדוח
+        function generateReportContent() {
+            const selectedCenter = document.querySelector('input[name="center"]:checked');
+            if (!selectedCenter) {
+                showToast('נא לבחור מרכז לפני יצירת הדוח', 'warning');
+                return '';
+            }
+
+            let content = `<h1>ניוזלטר חודשי - ${centersInfo[selectedCenter.value].fullName}</h1>`;
+            content += `<h2>${new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' })}</h2>`;
+
+            // איסוף תוכן מכל השדות
+            const sections = [
+                { id: 'team-member-name', title: 'חבר צוות', description: 'team-member-description' },
+                { id: 'monthly-overview', title: 'סקירה חודשית כללית' },
+                { id: 'activities-events', title: 'פעילויות ואירועים' },
+                { id: 'group-a-progress', title: 'התקדמות קבוצה א\'' },
+                { id: 'group-b-progress', title: 'התקדמות קבוצה ב\'' },
+                { id: 'group-c-progress', title: 'התקדמות קבוצה ג\'' },
+                { id: 'skills-tools', title: 'מיומנויות וכלים' },
+                { id: 'unique-initiatives', title: 'יוזמות ופרויקטים' },
+                { id: 'community-collaborations', title: 'שיתופי פעולה' },
+                { id: 'success-stories', title: 'סיפורי הצלחה' },
+                { id: 'future-plans', title: 'תוכניות ויעדים' },
+                { id: 'appreciation-thanks', title: 'הערכה ותודות' }
+            ];
+
+            sections.forEach(section => {
+                const element = document.getElementById(section.id);
+                if (element && element.value.trim()) {
+                    content += `<h3>${section.title}</h3>`;
+                    content += `<p>${element.value}</p>`;
+                    
+                    // אם יש שדה תיאור נוסף (כמו במקרה של חבר צוות)
+                    if (section.description) {
+                        const descElement = document.getElementById(section.description);
+                        if (descElement && descElement.value.trim()) {
+                            content += `<p>${descElement.value}</p>`;
+                        }
+                    }
+                }
+            });
+
+            return content;
+        }
+
+        // פונקציה להורדת הדוח כקובץ Word
+        document.getElementById('download-report').addEventListener('click', () => {
+            const content = generateReportContent();
+            if (!content) return; // אם אין תוכן, נצא מהפ��נקציה
+
+            const header = `
+                <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <title>ניוזלטר חודשי</title>
+                    <style>
+                        body { 
+                            font-family: 'Assistant', Arial, sans-serif; 
+                            direction: rtl; 
+                            line-height: 1.6;
+                            margin: 40px;
+                        }
+                        h1, h2, h3 { 
+                            color: #2c3e50;
+                            margin-top: 20px;
+                        }
+                        p { margin-bottom: 10px; }
+                    </style>
+                </head><body>
+            `;
+            const footer = '</body></html>';
+            const sourceHTML = header + content + footer;
+
+            const blob = new Blob(['\ufeff', sourceHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            const date = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' });
+            link.download = `ניוזלטר_חודשי_${date}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            showToast('הקובץ הורד בהצלחה! 📄', 'success');
+        });
+
+        // פונקציה לשליחת הדוח במייל
+        document.getElementById('email-report').addEventListener('click', () => {
+            const selectedCenter = document.querySelector('input[name="center"]:checked');
+            if (!selectedCenter) {
+                showToast('נא לבחור מרכז לפני שליחת המייל', 'warning');
+                return;
+            }
+
+            const centerInfo = centersInfo[selectedCenter.value];
+            const date = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' });
+            const subject = encodeURIComponent(`ניוזלטר חודשי - ${centerInfo.fullName} - ${date}`);
+            
+            // יצירת תוכן המייל בפורמט טקסט
+            let body = `ניוזלטר חודשי - ${centerInfo.fullName}\n`;
+            body += `${date}\n\n`;
+
+            const sections = document.querySelectorAll('.category-content');
+            sections.forEach(section => {
+                const textarea = section.querySelector('textarea');
+                if (textarea && textarea.value.trim()) {
+                    const title = section.previousElementSibling.textContent;
+                    body += `${title}:\n${textarea.value}\n\n`;
+                }
+            });
+
+            // פימוש ב-mailto במקום ms-outlook
+            const mailtoUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
+            
+            try {
+                // ניסיון לפתוח את האאוטלוק
+                window.location.href = mailtoUrl;
+                showToast('נפתח חלון חדש לשליחת המייל 📧', 'success');
+            } catch (error) {
+                // במקרה של שגיאה
+                showToast('אירעה שגיאה בפתיחת תוכנת המייל. נסה שוב', 'warning');
+                console.error('שגיאה בפתיחת המייל:', error);
+            }
+        });
+
+        // הוספת אנימציות לכפתורים
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('mouseenter', (e) => {
+                const x = e.pageX - button.offsetLeft;
+                const y = e.pageY - button.offsetTop;
+                
+                button.style.setProperty('--x', `${x}px`);
+                button.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // מידע על המרכזים
+        const centersInfo = {
+            'jerusalem': {
+                fullName: 'מרכז יזמות יוניסטרים בויאר ירושלים ע"ש קרל פרייס',
+                partners: 'משרד ירושלים ומורשת, הרשות לפיתוח ירושלים, אנשי קשר מהרשות, מלווים עסקיים'
+            },
+            'beer-sheva': {
+                fullName: 'מרכז אלטשולר שחם באר שבע',
+                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+            },
+            'netivot': {
+                fullName: 'מרכז יזמות יוניסטרים נתיבות',
+                partners: 'בנק הפועלים, הפדרציה היהודית של פילדלפיה, אנשי קשר מהרשות, מלווים עסקיים'
+            },
+            'sderot': {
+                fullName: 'מרכז יוניסטרים שדרות',
+                partners: 'הפדרציה היהודית של טורונטו, חברת אמדוקס, אנשי קשר מהרשות, מלווים עסקיים'
+            },
+            'kiryat-malachi': {
+                fullName: 'מרכז יוניסטרים קרית מלאכי',
+                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+            },
+            'kfar-chabad': {
+                fullName: 'מרכז יוניסטרים כפר חב"ד',
+                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+            }
+        };
+
+        // עדכון נושא המייל בהתאם לבחירת המרכזים
+        document.querySelectorAll('input[name="center"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateEmailSubject);
+        });
+
+        function updateEmailSubject() {
+            const selectedCenter = document.querySelector('input[name="center"]:checked');
+            const selectedCentersText = document.getElementById('selected-centers-text');
+            
+            if (selectedCenter) {
+                const centerInfo = centersInfo[selectedCenter.value];
+                selectedCentersText.textContent = centerInfo.fullName;
+                
+                const partnersInfo = document.createElement('div');
+                partnersInfo.className = 'partners-info';
+                partnersInfo.innerHTML = `
+                    <div class="tips" style="margin-top: 20px;">
+                        <strong>למי לשלוח עדכונים?</strong>
+                        <p>${centerInfo.partners}</p>
+                    </div>
+                `;
+                
+                // מחיקת מידע קודם אם קיים
+                const existingInfo = document.querySelector('.partners-info');
+                if (existingInfo) {
+                    existingInfo.remove();
+                }
+                
+                // הוספת המידע החדש
+                document.querySelector('.email-subject-wrapper').appendChild(partnersInfo);
+            } else {
+                selectedCentersText.textContent = '-- בחר מרכז --';
+                const existingInfo = document.querySelector('.partners-info');
+                if (existingInfo) {
+                    existingInfo.remove();
+                }
+            }
+        }
+
+        // הוספת אירוע שמירה לחבר צוות
+        document.getElementById('save-team-member').addEventListener('click', () => {
+            alert('פרטי חבר הצוות נשמרו בהצלחה');
+        });
+
+        function toggleCentersList() {
+            const centersList = document.getElementById('centers-list');
+            centersList.classList.toggle('hidden');
+        }
+
+        // פונקציה להצגת הודעות משוב
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // עדכון פונקציות השמירה
+        function addSaveEvent(buttonId, textareaId) {
+            document.getElementById(buttonId).addEventListener('click', () => {
+                const content = document.getElementById(textareaId).value;
+                showToast('התוכן נשמר בהצלחה! 🎉');
+            });
+        }
+
+        // אנימציות לפתיחת קטגוריות
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                header.classList.toggle('active');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // הוספת פונקציות מעקב אחר התקדמות
+        const progressTracker = {
+            sections: {
+                'center-selection': { completed: false, weight: 10 },
+                'team-member-name': { completed: false, weight: 15 },
+                'monthly-overview': { completed: false, weight: 15 },
+                'activities-events': { completed: false, weight: 15 },
+                'group-a-progress': { completed: false, weight: 5 },
+                'group-b-progress': { completed: false, weight: 5 },
+                'group-c-progress': { completed: false, weight: 5 },
+                'skills-tools': { completed: false, weight: 10 },
+                'future-plans': { completed: false, weight: 10 },
+                'appreciation-thanks': { completed: false, weight: 10 }
+            },
+            
+            updateProgress(sectionId, isCompleted) {
+                if (this.sections[sectionId]) {
+                    this.sections[sectionId].completed = isCompleted;
+                    this.calculateTotalProgress();
+                }
+            },
+            
+            calculateTotalProgress() {
+                let totalWeight = 0;
+                let completedWeight = 0;
+                
+                for (const [id, section] of Object.entries(this.sections)) {
+                    totalWeight += section.weight;
+                    if (section.completed) {
+                        completedWeight += section.weight;
+                    }
+                }
+                
+                const percentage = Math.round((completedWeight / totalWeight) * 100);
+                this.updateProgressUI(percentage);
+            },
+            
+            updateProgressUI(percentage) {
+                const steps = document.querySelectorAll('.progress-step');
+                const stepPercentages = [25, 50, 75, 100]; // אחוזים לכל שלב
+                
+                steps.forEach((step, index) => {
+                    const stepThreshold = stepPercentages[index];
+                    const percentageElement = step.querySelector('.progress-percentage');
+                    
+                    if (percentage >= stepThreshold) {
+                        step.classList.add('completed');
+                        step.classList.remove('active');
+                        percentageElement.textContent = '100%';
+                    } else if (percentage > (index > 0 ? stepPercentages[index - 1] : 0)) {
+                        step.classList.add('active');
+                        step.classList.remove('completed');
+                        const stepProgress = Math.min(100, Math.round(
+                            ((percentage - (index > 0 ? stepPercentages[index - 1] : 0)) / 
+                            (stepThreshold - (index > 0 ? stepPercentages[index - 1] : 0))) * 100
+                        ));
+                        percentageElement.textContent = `${stepProgress}%`;
+                    } else {
+                        step.classList.remove('completed', 'active');
+                        percentageElement.textContent = '0%';
+                    }
+                });
+            }
+        };
+
+        // עדכון פונקציות השמירה הקיימות
+        function addSaveEvent(buttonId, sectionId) {
+            document.getElementById(buttonId)?.addEventListener('click', () => {
+                const content = document.getElementById(sectionId)?.value;
+                if (content && content.trim().length > 0) {
+                    progressTracker.updateProgress(sectionId, true);
+                    showToast('התוכן נשמר בהצלחה! 🎉');
+                } else {
+                    progressTracker.updateProgress(sectionId, false);
+                    showToast('נא למלא תכן לפני השמירה', 'warning');
+                }
+            });
+        }
+
+        // הוספת מעקב אחר בחירת מרכז
+        document.querySelectorAll('input[name="center"]').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const isAnyChecked = Array.from(document.querySelectorAll('input[name="center"]:checked')).length > 0;
+                progressTracker.updateProgress('center-selection', isAnyChecked);
+            });
+        });
+
+        // הוספת כל אירועי השמירה
+        addSaveEvent('save-team-member', 'team-member-name');
+        addSaveEvent('save-monthly-overview', 'monthly-overview');
+        addSaveEvent('save-activities-events', 'activities-events');
+        addSaveEvent('save-group-a-progress', 'group-a-progress');
+        addSaveEvent('save-group-b-progress', 'group-b-progress');
+        addSaveEvent('save-group-c-progress', 'group-c-progress');
+        addSaveEvent('save-skills-tools', 'skills-tools');
+        addSaveEvent('save-future-plans', 'future-plans');
+        addSaveEvent('save-appreciation-thanks', 'appreciation-thanks');
+
+        // עדכון ה-HTML של סרגל ההתקדמות
+        document.querySelector('.progress-bar').innerHTML = `
+            <div class="progress-step active">
+                <div class="step-icon">📋</div>
+                <div class="step-label">בחירת מרכז</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-icon">👥</div>
+                <div class="step-label">פרטי הצוות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-icon">📊</div>
+                <div class="step-label">סקירה חודשית</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-icon">🎯</div>
+                <div class="step-label">יעדים ותוכניות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+        `;
+
+        // פונקציה חדשה לבקשת גישה
+        function requestAccess(centerId) {
+            const centerInfo = centersInfo[centerId];
+            const userEmail = prompt('אנא הזן את כתובת המייל שלך לבקשת גישה:');
+            
+            if (userEmail) {
+                // כאן אפשר לשלוח את הבקשה לשרת או להפנות לטופס
+                window.open(`mailto:your-admin-email@example.com?subject=בקשת גישה לתיק מרכז ${centerInfo.fullName}&body=אנא אשר לי גישה לתיק המרכז.%0D%0A%0D%0Aמייל: ${userEmail}%0D%0Aמרכז: ${centerInfo.fullName}`);
+                
+                showToast('בקשת הגישה נשלחה בהצלחה! נחזור אליך בהקדם', 'info');
+            }
+        }
+
+        // נוסיף פונקציה לאימות משתמש
+        function authenticateUser(centerId) {
+            const centerInfo = centersInfo[centerId];
+            const userEmail = prompt('אנא הזן את כתובת המייל שלך:');
+            
+            // כאן צריך להיות מערך של מיילים מורשים לכל מרכז
+            const authorizedEmails = {
+                'jerusalem': ['manager1@example.com', 'staff1@example.com'],
+                'beer-sheva': ['manager2@example.com', 'staff2@example.com'],
+                // ... וכן הלאה
+            };
+            
+            if (userEmail && authorizedEmails[centerId]?.includes(userEmail)) {
+                // אם המייל מורשה, מציגים את הקישור
+                window.open(centerInfo.centerFile, '_blank');
+            } else {
+                showToast('אין לך הרשאות גישה לתיק זה. אנא פנה למנהל המערכת', 'warning');
+            }
+        }
+    </script>
+</body>
+</html>
