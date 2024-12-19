@@ -7,12 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* עדכון הרקע הכללי והheader */
+        /* עיצוב בסיסי */
         body {
             font-family: 'Assistant', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://subtlepatterns.com/patterns/geometry2.png') repeat;
             background-color: #f5f7fa;
             color: #333;
             direction: rtl;
@@ -20,21 +19,18 @@
         }
 
         header {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: linear-gradient(135deg, #2a70b2, #30c3a2);
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
             border-radius: 0 0 10px 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 120px 20px 20px;
         }
 
         h1, h2, h3, h4 {
@@ -43,18 +39,23 @@
         }
 
         .card {
-            background: transparent;
-            border: 1px solid rgba(33, 147, 176, 0.1);
+            background: white;
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e6e9ec;
+            text-align: right;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(31, 38, 135, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
         .card h3 {
@@ -77,54 +78,24 @@
         }
 
         .button {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(45deg, #2193b0, #6dd5ed);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 6px 20px rgba(33, 147, 176, 0.3);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
             padding: 12px 25px;
             border-radius: 8px;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 30px;
-            border-radius: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
         }
 
         .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(33, 147, 176, 0.5);
-        }
-
-        .button:hover::before {
-            left: 100%;
+            background: linear-gradient(135deg, #2980b9, #2573a7);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
         }
 
         textarea, input[type="text"] {
@@ -140,75 +111,42 @@
             direction: rtl;
             background-color: #f8f9fa;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(33, 147, 176, 0.2);
-            border-radius: 15px;
-            padding: 15px 20px;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
         }
 
         textarea:focus, input[type="text"]:focus {
             outline: none;
             border-color: #3498db;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-            background: #ffffff;
-            border-color: #2193b0;
-            box-shadow: 0 0 0 4px rgba(33, 147, 176, 0.1);
-            background: #ffffff;
-            border-color: #2193b0;
-            box-shadow: 0 0 0 4px rgba(33, 147, 176, 0.1), inset 0 2px 4px rgba(0,0,0,0.05);
-            transform: translateY(-2px);
         }
 
         .category-container {
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 15px;
-        }
-
-        .category-container:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+            margin-bottom: 25px;
         }
 
         .category-header {
-            background: linear-gradient(45deg, #ffffff, #f8f9fa);
-            border: 1px solid rgba(33, 147, 176, 0.1);
-            border-radius: 12px;
-            padding: 15px 25px;
-            font-size: 17px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 18px 25px;
+            border-radius: 10px;
+            font-size: 18px;
             font-weight: 600;
             color: #2c3e50;
             cursor: pointer;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             transition: all 0.3s ease;
+            border: 1px solid #e6e9ec;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .category-header::after {
-            content: '▼';
-            left: 20px;
-            position: absolute;
-            transition: transform 0.3s ease;
-        }
-
-        .category-header.active::after {
-            transform: rotate(180deg);
-        }
-
         .category-header:hover {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-            transform: translateX(-5px);
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-color: #d1d9e6;
         }
 
         .category-content {
             padding: 5px 0;
             transition: all 0.3s ease;
-            display: none;
         }
 
         .team-member {
@@ -223,12 +161,9 @@
         }
 
         .tips {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border: none;
-            border-right: 4px solid #2193b0;
-            border-radius: 12px;
-            padding: 20px 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background-color: #f8f9fa;
+            border-right: 4px solid #3498db;
+            padding: 15px 20px;
             margin-top: 20px;
             border-radius: 8px;
             font-size: 14px;
@@ -416,83 +351,102 @@
             cursor: pointer;
         }
 
-        /* סגנונות לסרגל התקדמות */
+        /* עדכון סרגל ההתקדמות */
         .progress-bar {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
-            width: 200px;
-            border-radius: 20px;
-            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-steps-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .progress-step {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .progress-step::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 30px;
-            background: #e0e0e0;
-            bottom: -30px;
-            right: 24px;
-            z-index: 1;
+        .progress-step:hover {
+            background: #f8f9fa;
         }
 
         .step-icon {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f8f9fa, #e8ecf2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
+            background: #f0f4f8;
             transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-            flex-shrink: 0;
-            border: 2px solid rgba(33, 147, 176, 0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .step-label {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
-            white-space: nowrap;
-            flex-grow: 1;
+            text-align: center;
+            font-weight: 500;
         }
 
         .progress-percentage {
-            font-size: 14px;
+            font-size: 11px;
             color: #2c3e50;
             font-weight: 600;
-            min-width: 45px;
-            text-align: left;
+        }
+
+        .progress-step:hover .step-icon {
+            transform: scale(1.1);
+        }
+
+        .progress-step.completed .step-icon,
+        .progress-step.active .step-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .progress-step.completed::after {
+            background: linear-gradient(to right, #3498db, #2980b9);
         }
 
         /* התאמה למסך קטן */
-        @media (max-width: 1200px) {
-            .progress-bar {
-                display: none;
+        @media (max-width: 768px) {
+            .progress-steps-container {
+                overflow-x: auto;
+                padding: 0 10px;
             }
             
-            .container {
-                padding: 20px;
+            .step-label {
+                font-size: 12px;
+            }
+            
+            .step-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
             }
         }
 
@@ -509,6 +463,20 @@
                 transform: translateY(0);
                 opacity: 1;
             }
+        }
+
+        /* עיצוב חדש לכרטיסיות */
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         /* אנימציית מעבר משופרת */
@@ -528,7 +496,7 @@
             }
         }
 
-        /* עיצב משופר לותרות קטגוריות */
+        /* עיצוב משופר לכותרות קטגוריות */
         .category-header {
             display: flex;
             align-items: center;
@@ -641,120 +609,145 @@
             background: linear-gradient(135deg, #2ecc71, #27ae60);
         }
 
-        .guide-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            border-radius: 20px;
-            padding: 25px 35px;
-            margin: 30px auto;
-            max-width: 800px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: right;
-            border: 1px solid rgba(255,255,255,0.3);
+        /* הוספת סגנונות ל-HERO */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 300px; /* הגדלת הגובה מ-200px ל-300px */
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1500');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .guide-box h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .guide-box ul {
-            padding-right: 20px;
-            margin: 10px 0;
-        }
-
-        .guide-box li {
-            margin: 8px 0;
-            color: #34495e;
-        }
-
-        .guide-box strong {
-            color: #2980b9;
-        }
-
-        /* עדכון הקונטיינר הראשי */
-        .shared-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            margin-bottom: 40px;
-        }
-
-        /* העברת החץ לצד שמאל */
-        .category-header::after {
-            content: '▼';
-            left: 20px;
+        .hero-overlay {
             position: absolute;
-            transition: transform 0.3s ease;
-        }
-
-        /* התאמת המרווחים */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
             padding: 20px;
         }
 
-        @media (max-width: 768px) {
-            .shared-container {
-                margin: 20px;
-                padding: 20px;
-            }
-            
-            .category-header {
-                padding: 12px 20px;
-            }
+        .hero-title {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* עדכון header */
+        header {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* עדכון סרגל הכלים */
+        .progress-bar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>ניוזלטר חודשי</h1>
-        <p id="current-date"></p>
-        <div class="guide-box">
-            <h3>🎯 מדריך למילוי הניוזלטר</h3>
-            <p>
-                מנהלים יקרים, הטופס שלפניכם נועד לסייע בכתיבת הניוזלטר החודשי ולהציע רעיונות לתכנים אפשריים. 
-                <br><br>
-                <strong>חשוב לדעת:</strong>
-                <ul>
-                    <li>אין צורך למלא את כל הלשוניות - בחרו את התכנים הרלוונטיים עבור המרכז שלכם</li>
-                    <li>הקטגוריות השונות נועדו לעורר השראה ולהציע כיווני כתיבה אפשריים</li>
-                    <li>תוכלו להתמקד בנושאים המשמעותיים ביותר שקרו החודש במרכז שלכם</li>
-                    <li>מומץ לשלב סיפורים אישיים, תמונות והישגים מיוחדים</li>
-                </ul>
-            </p>
+        <div class="hero-section">
+            <div class="hero-overlay">
+                <h1 class="hero-title">ניוזלטר חודשי</h1>
+                <p class="hero-subtitle" id="current-date"></p>
+            </div>
         </div>
     </header>
 
     <div class="progress-bar">
-        <div class="progress-step active">
-            <div class="step-icon">📋</div>
-            <div class="step-label">בחירת מרכז</div>
-        </div>
-        <div class="progress-step">
-            <div class="step-icon">👥</div>
-            <div class="step-label">פרטי הצוות</div>
-        </div>
-        <div class="progress-step">
-            <div class="step-icon">📊</div>
-            <div class="step-label">סקירה חודשית</div>
-        </div>
-        <div class="progress-step">
-            <div class="step-icon">🎯</div>
-            <div class="step-label">יעדים ותוכניות</div>
+        <div class="progress-steps-container">
+            <div class="progress-step" data-section="center-selection">
+                <div class="step-icon">📋</div>
+                <div class="step-label">בחירת מרכז</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="team-section">
+                <div class="step-icon">👥</div>
+                <div class="step-label">פרטי הצוות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="monthly-section">
+                <div class="step-icon">📊</div>
+                <div class="step-label">סקירה חודשית</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="activities-section">
+                <div class="step-icon">📅</div>
+                <div class="step-label">פעילויות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="progress-section">
+                <div class="step-icon">📈</div>
+                <div class="step-label">התקדמות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="skills-section">
+                <div class="step-icon">🔧</div>
+                <div class="step-label">מיומנויות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="initiatives-section">
+                <div class="step-icon">💡</div>
+                <div class="step-label">יוזמות מיוחדות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="collaboration-section">
+                <div class="step-icon">🤝</div>
+                <div class="step-label">שיתופי פעולה</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="success-section">
+                <div class="step-icon">🌟</div>
+                <div class="step-label">סיפורי הצלחה</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="goals-section">
+                <div class="step-icon">🎯</div>
+                <div class="step-label">יעדים</div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            <div class="progress-step" data-section="appreciation-section">
+                <div class="step-icon">❤️</div>
+                <div class="step-label">הערכה ותודות</div>
+                <div class="progress-percentage">0%</div>
+            </div>
         </div>
     </div>
 
     <div class="container shared-container">
         <!-- החלק הזה יחליף את החלק של בחירת המרכז הקיים -->
-        <div class="category-container">
+        <div class="category-container" id="center-selection">
             <div class="card">
                 <div class="email-subject-wrapper">
                     <h3>נושא המייל:</h3>
@@ -779,7 +772,7 @@
         </div>
 
         <!-- הכירו את הצוות -->
-        <div class="category-container">
+        <div class="category-container" id="team-section">
             <div class="category-header">הכירו את הצוות</div>
             <div class="category-content">
                 <div class="card">
@@ -801,11 +794,11 @@
         </div>
 
         <!-- סקירה חודשית כללית -->
-        <div class="category-container">
+        <div class="category-container" id="monthly-section">
             <div class="category-header">סקירה חודשית כללית</div>
             <div class="category-content">
                 <div class="card">
-                    <h3>תיאור כללי של החודש האחרון במרכז היזמות</h3>
+                    <h3>תיאור כללי של הודש האחרון במרכ היזמות</h3>
                     <textarea id="monthly-overview" placeholder="תאר את החודש האחרון במרכז היזמות"></textarea>
                     <button class="button save-button" id="save-monthly-overview">שמור סקירה חודשית</button>
                     <div class="tips">
@@ -816,30 +809,30 @@
         </div>
 
         <!-- פעילויות ואירועים שהתקיימו -->
-        <div class="category-container">
+        <div class="category-container" id="activities-section">
             <div class="category-header">פעילויות ואירועים שהתקיימו</div>
             <div class="category-content">
                 <div class="card">
-                    <h3>פירוט של הסדנאות, המפגשים, ההרצאות או האירועים המיוחדים שהתקיימו</h3>
+                    <h3>פירוט של הסדנאת, המפגשים, ההרצאות או האירועים המיוחדים שהתקיימו</h3>
                     <textarea id="activities-events" placeholder="תאר את הפעילויות והאירועים שהתקיימו"></textarea>
                     <button class="button save-button" id="save-activities-events">שמור פעילויות ואירועים</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> הוסיפו תמונות או ציטוטים מהמשתתפים כדי להמחיש את האווירה והחוויה של האירועים.
+                        <strong>טיפ:</strong> הוסיפו תמונות או ציוטים מהמשתתפים כדי להמחיש את האווירה והחוויה של האירועים.
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- התקדמות הקבוצות והמיזמים -->
-        <div class="category-container">
+        <div class="category-container" id="progress-section">
             <div class="category-header">התקדמות הקבוצות והמיזמים</div>
             <div class="category-content">
                 <div class="card">
                     <h3>קבוצה א'</h3>
-                    <textarea id="group-a-progress" placeholder="עדכן על התקדמות קבוצה א'"></textarea>
+                    <textarea id="group-a-progress" placeholder="עדכן על התקדמות קבצה א'"></textarea>
                     <button class="button save-button" id="save-group-a-progress">שמור התקדמות קבוצה א'</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> שתפו אתגרים שהקבוצה התמודדה איתם וכיצד הם הצליחו להתגבר עליהם. זה יכול להוות השראה לאחרים.
+                        <strong>טיפ:</strong> שתפו אתגרים שהקבוצה התמודדה אתם וכיצד הם הצליחו להתגבר עליהם. זה יכול להוות השראה לאחרים.
                     </div>
                 </div>
                 <div class="card">
@@ -855,19 +848,19 @@
                     <textarea id="group-c-progress" placeholder="עדכן על התקדמות קבוצה ג'"></textarea>
                     <button class="button save-button" id="save-group-c-progress">שור התקדמות קבוצה ג'</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> הציגו את התוכניות העתידיות של הקבוצה וכיצד הם מתכוונים להמשיך ולהתקדם.
+                        <strong>טיפ:</strong> הציגו את התוכניות העתידית של הקבוצה וכיצד הם מתכוונים להמשיך ולהתקדם.
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- מיומנויות וכלים שנרכשו -->
-        <div class="category-container">
+        <div class="category-container" id="skills-section">
             <div class="category-header">מיומנויות וכלים שנרכשו</div>
             <div class="category-content">
                 <div class="card">
                     <h3>תיאור של המיומנויות והכלים שהחניכים רכשו</h3>
-                    <textarea id="skills-tools" placeholder="תאר את המיומנויות והכלם שנרכשו"></textarea>
+                    <textarea id="skills-tools" placeholder="תאר את המיומנויות והכלים שנרכשו"></textarea>
                     <button class="button save-button" id="save-skills-tools">שמור מיומנויות וכלים</button>
                     <div class="tips">
                         <strong>טיפ:</strong> הדגישו כיצד המיומנויות החדשות תורמות להתקדמות המיזמים ולפיתוח האישי של החניכים.
@@ -877,15 +870,15 @@
         </div>
 
         <!-- יוזמות ייחודיות ופרויקטים מיוחדים -->
-        <div class="category-container">
+        <div class="category-container" id="goals-section">
             <div class="category-header">יוזמות ייחודיות ופרויקטים מיוחדים</div>
             <div class="category-content">
                 <div class="card">
                     <h3>תיאור של יזמות או פרויקטים שמייחדים את המרכז</h3>
-                    <textarea id="unique-initiatives" placeholder="תאר את היוזמות והפרויקטים המיוחדים"></textarea>
+                    <textarea id="unique-initiatives" placeholder="אר את היוזמות והפרויקטים המיוחדים"></textarea>
                     <button class="button save-button" id="save-unique-initiatives">שמור יוזמות ופרויקטים</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> שפו את המטרות והחזון של היוזמות וכיצד הן משפיעות על הקהילה או החניכים.
+                        <strong>טיפ:</strong> שתפו את המטרות והחזון של היוזמות וכיצד הן משפיעת על הקהילה או החניכים.
                     </div>
                 </div>
             </div>
@@ -900,7 +893,7 @@
                     <textarea id="community-collaborations" placeholder="תאר את שיופ הפעולה עם קהילה"></textarea>
                     <button class="button save-button" id="save-community-collaborations">שמור שיתופי פעולה</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> הציגו את ההשפעה של שיתופי הפעולה על הקהילה וכיצד הם תורמים לחניכים ולמרכז.
+                        <strong>טיפ:</strong> הציגו את ההשפעה ל שיתופי הפעולה על הקהילה וכיצד הם תורמים לחניכים ולמרכז.
                     </div>
                 </div>
             </div>
@@ -913,9 +906,9 @@
                 <div class="card">
                     <h3>הצגת סיפורים אישיים או קבוצתיים המדגישים הצלחות</h3>
                     <textarea id="success-stories" placeholder="תאר את סיפורי ההצלחה"></textarea>
-                    <button class="button save-button" id="save-success-stories">שמור סיפורי הצלחה</button>
+                    <button class="button save-button" id="save-success-stories">שמור סיפור הצלחה</button>
                     <div class="tips">
-                        <strong>טפ:</strong> שתפו סיפורים מרגשים או יוצאי דופן שמדגישים את ההשפעה של המרכז על החניכים.
+                        <strong>טיפ:</strong> שתפו סיפורים מרגשים או יוצאי דופן שמדגישים את ההשפעה של המרכז על חניכים.
                     </div>
                 </div>
             </div>
@@ -930,7 +923,7 @@
                     <textarea id="future-plans" placeholder="תאר את התוכניות והיעדים לעתיד"></textarea>
                     <button class="button save-button" id="save-future-plans">שמור תוכניות ויעדים</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> הציגו את האתגרים הצפויים וכיצד אתם מתכננים להתמודד איתם. זה יכול להוות השראה לאחרים.
+                        <strong>טיפ:</strong> הציגו את האתגרים הצפויים וכיצד אתם מתכננים להתמודד אים. זה יכול להוות השראה לאחרים.
                     </div>
                 </div>
             </div>
@@ -943,9 +936,9 @@
                 <div class="card">
                     <h3>הבעת תודה והערכה לשותפים, תורמים, מנטורים או חברי צוות</h3>
                     <textarea id="appreciation-thanks" placeholder="תאר את התודות וההערכה"></textarea>
-                    <button class="button save-button" id="save-appreciation-thanks">שמור הערכה ותודות</button>
+                    <button class="button save-button" id="save-appreciation-thanks">שמור הערכה ותדות</button>
                     <div class="tips">
-                        <strong>טיפ:</strong> הוסיפו ציטוטים או משובים מהחניכים או מהשותפים כדי להמחי את ההשפעה של התמיכה.
+                        <strong>טיפ:</strong> הוסיפו ציטוטים או משובים מהחניכים או מהשותפים כדי להמחיש את ההשפעה של התמיכה.
                     </div>
                 </div>
             </div>
@@ -957,7 +950,7 @@
                 הורד ניוזלטר כקובץ Word
             </button>
             <button class="button" id="email-report">
-                שלח נוזלטר במייל
+                שלח ניוזלטר במייל
             </button>
         </footer>
     </div>
@@ -971,13 +964,11 @@
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
                 header.classList.toggle('active');
-                
+
                 if (content.style.display === 'block') {
                     content.style.display = 'none';
-                    content.style.maxHeight = null;
                 } else {
                     content.style.display = 'block';
-                    content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
         });
@@ -1002,75 +993,16 @@
         addSaveEvent('save-future-plans', 'future-plans');
         addSaveEvent('save-appreciation-thanks', 'appreciation-thanks');
 
-        // פונקציה ליצירת תוכן הדוח
-        function generateReportContent() {
-            const selectedCenter = document.querySelector('input[name="center"]:checked');
-            if (!selectedCenter) {
-                showToast('נא לבחור מרכז לפני יצירת הדוח', 'warning');
-                return '';
-            }
-
-            let content = `<h1>ניוזלטר חודשי - ${centersInfo[selectedCenter.value].fullName}</h1>`;
-            content += `<h2>${new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' })}</h2>`;
-
-            // איסוף תוכן מכל השדות
-            const sections = [
-                { id: 'team-member-name', title: 'חבר צוות', description: 'team-member-description' },
-                { id: 'monthly-overview', title: 'סקירה חודשית כללית' },
-                { id: 'activities-events', title: 'פעילויות ואירועים' },
-                { id: 'group-a-progress', title: 'התקדמות קבוצה א\'' },
-                { id: 'group-b-progress', title: 'התקדמות קבוצה ב\'' },
-                { id: 'group-c-progress', title: 'התקדמות קבוצה ג\'' },
-                { id: 'skills-tools', title: 'מיומנויות וכלים' },
-                { id: 'unique-initiatives', title: 'יוזמות ופרויקטים' },
-                { id: 'community-collaborations', title: 'שיתופי פעולה' },
-                { id: 'success-stories', title: 'סיפורי הצלחה' },
-                { id: 'future-plans', title: 'תוכניות ויעדים' },
-                { id: 'appreciation-thanks', title: 'הערכה ותודות' }
-            ];
-
-            sections.forEach(section => {
-                const element = document.getElementById(section.id);
-                if (element && element.value.trim()) {
-                    content += `<h3>${section.title}</h3>`;
-                    content += `<p>${element.value}</p>`;
-                    
-                    // אם יש שדה תיאור נוסף (כמו במקרה של חבר צוות)
-                    if (section.description) {
-                        const descElement = document.getElementById(section.description);
-                        if (descElement && descElement.value.trim()) {
-                            content += `<p>${descElement.value}</p>`;
-                        }
-                    }
-                }
-            });
-
-            return content;
-        }
-
-        // פונקציה להורדת הדוח כקובץ Word
+        // פונקציה להורדת הניוזלטר כקובץ Word
         document.getElementById('download-report').addEventListener('click', () => {
             const content = generateReportContent();
-            if (!content) return; // אם אין תוכן, נצא מהפ��נקציה
-
             const header = `
                 <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-                <head>
-                    <meta charset='UTF-8'>
-                    <title>ניוזלטר חודשי</title>
-                    <style>
-                        body { 
-                            font-family: 'Assistant', Arial, sans-serif; 
-                            direction: rtl; 
-                            line-height: 1.6;
-                            margin: 40px;
-                        }
-                        h1, h2, h3 { 
-                            color: #2c3e50;
-                            margin-top: 20px;
-                        }
-                        p { margin-bottom: 10px; }
-                    </style>
+                <head><meta charset='UTF-8'><title>ניוזלטר חודשי</title>
+                <style>
+                    body { font-family: 'Assistant', sans-serif; direction: rtl; }
+                    h1, h2, h3, h4 { font-weight: bold; }
+                </style>
                 </head><body>
             `;
             const footer = '</body></html>';
@@ -1080,91 +1012,92 @@
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            const date = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' });
-            link.download = `ניוזלטר_חודשי_${date}.doc`;
+            link.download = 'ניוזלטר_חודשי.doc';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            showToast('הקובץ הורד בהצלחה! 📄', 'success');
         });
 
-        // פונקציה לשליחת הדוח במייל
+        // פונקציה לשליחת הניוזלטר במייל
         document.getElementById('email-report').addEventListener('click', () => {
-            const selectedCenter = document.querySelector('input[name="center"]:checked');
-            if (!selectedCenter) {
-                showToast('נא לבחור מרכז לפני שליחת המייל', 'warning');
-                return;
-            }
-
-            const centerInfo = centersInfo[selectedCenter.value];
-            const date = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long' });
-            const subject = encodeURIComponent(`ניוזלטר חודשי - ${centerInfo.fullName} - ${date}`);
-            
-            // יצירת תוכן המייל בפורמט טקסט
-            let body = `ניוזלטר חודשי - ${centerInfo.fullName}\n`;
-            body += `${date}\n\n`;
-
-            const sections = document.querySelectorAll('.category-content');
-            sections.forEach(section => {
-                const textarea = section.querySelector('textarea');
-                if (textarea && textarea.value.trim()) {
-                    const title = section.previousElementSibling.textContent;
-                    body += `${title}:\n${textarea.value}\n\n`;
-                }
-            });
-
-            // פימוש ב-mailto במקום ms-outlook
-            const mailtoUrl = `mailto:?subject=${subject}&body=${encodeURIComponent(body)}`;
-            
-            try {
-                // ניסיון לפתוח את האאוטלוק
-                window.location.href = mailtoUrl;
-                showToast('נפתח חלון חדש לשליחת המייל 📧', 'success');
-            } catch (error) {
-                // במקרה של שגיאה
-                showToast('אירעה שגיאה בפתיחת תוכנת המייל. נסה שוב', 'warning');
-                console.error('שגיאה בפתיחת המייל:', error);
-            }
+            const selectedCenter = document.querySelector('input[name="center"]:checked').value;
+            const centerName = selectedCenter ? centersInfo[selectedCenter].fullName : '';
+            const content = generatePlainTextReportContent();
+            const subject = encodeURIComponent(`ניוזלטר חודשי עבור ${centerName}`);
+            const body = encodeURIComponent(content);
+            const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
         });
 
-        // הוספת אנימציות לכפתורים
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('mouseenter', (e) => {
-                const x = e.pageX - button.offsetLeft;
-                const y = e.pageY - button.offsetTop;
-                
-                button.style.setProperty('--x', `${x}px`);
-                button.style.setProperty('--y', `${y}px`);
-            });
-        });
+        // פונקציה ליצירת תוכן הניוזלטר בפורמט טקסט פשוט
+        function generatePlainTextReportContent() {
+            let report = '';
+            report += `${document.querySelector('header h1').innerText}\n`;
+            report += `${document.getElementById('current-date').innerText}\n\n`;
+
+            // הכירו את הצוות
+            const teamMemberName = document.getElementById('team-member-name').value;
+            const teamMemberDescription = document.getElementById('team-member-description').value;
+            
+            if (teamMemberName || teamMemberDescription) {
+                report += 'הכירו את הצוות:\n';
+                report += `${teamMemberName}\n`;
+                report += `${teamMemberDescription}\n\n`;
+            }
+
+            // המשך הפונקציה כרגיל...
+            return report;
+        }
+
+        // פונקציה ליצירת תוכן הניוזלטר ב-HTML עבור הורדה
+        function generateReportContent() {
+            let report = '';
+            report += `<h1>${document.querySelector('header h1').innerText}</h1>`;
+            report += `<h2>${document.getElementById('current-date').innerText}</h2>`;
+
+            // הכירו את הצוות
+            const teamMemberName = document.getElementById('team-member-name').value;
+            const teamMemberDescription = document.getElementById('team-member-description').value;
+            
+            if (teamMemberName || teamMemberDescription) {
+                report += '<h2>הכירו את הצוות</h2>';
+                report += `<p><strong>${teamMemberName}</strong></p>`;
+                report += `${teamMemberDescription}\n\n`;
+            }
+
+            // המשך הפונקציה כרגיל...
+            return report;
+        }
 
         // מידע על המרכזים
         const centersInfo = {
             'jerusalem': {
                 fullName: 'מרכז יזמות יוניסטרים בויאר ירושלים ע"ש קרל פרייס',
-                partners: 'משרד ירושלים ומורשת, הרשות לפיתוח ירושלים, אנשי קשר מהרשות, מלווים עסקיים'
+                partners: 'משרד ירושלים ומורשת, הרשות לפיתוח יושלים, אנשי קשר מהרשות, מלווים עסקיים ונעמה מעוז'
             },
             'beer-sheva': {
                 fullName: 'מרכז אלטשולר שחם באר שבע',
-                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+                partners: 'אנשי קשר מהרשות, מלווים עסקיים ונעמה מעוז'
             },
             'netivot': {
                 fullName: 'מרכז יזמות יוניסטרים נתיבות',
-                partners: 'בנק הפועלים, הפדרציה היהודית של פילדלפיה, אנשי קשר מהרשות, מלווים עסקיים'
+                partners: 'בנק הפועלים, הפדרציה היהודית של פילדלפיה, אנשי קשר מהרשות, מלווים עסקיים ונעמה מעוז'
             },
             'sderot': {
                 fullName: 'מרכז יוניסטרים שדרות',
-                partners: 'הפדרציה היהודית של טורונטו, חברת אמדוקס, אנשי קשר מהרשות, מלווים עסקיים'
+                partners: 'הפדרציה היהודית של טורונטו, חברת אמדוקס, אנשי קשר מהרשות, מלווים עסקיים ונעמה מעוז'
             },
-            'kiryat-malachi': {
-                fullName: 'מרכז יוניסטרים קרית מלאכי',
-                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+            'eilat': {
+                fullName: 'מרכז יוניסטרים אילת',
+                partners: 'הרשות העירונית, רשת המתנסים אילת אגף נוער וספורט, חברת יטבתה'
             },
             'kfar-chabad': {
                 fullName: 'מרכז יוניסטרים כפר חב"ד',
-                partners: 'אנשי קשר מהרשות, מלווים עסקיים'
+                partners: 'אנשי קשר מהרשות, מלוים עסקיים ונעמה מעוז'
+            },
+            'kiryat-malachi': {
+                fullName: 'מרכז יוניסטרים קרית מלאכי',
+                partners: '(יש להשלים את רשמ השותפים)'
             }
         };
 
@@ -1174,36 +1107,33 @@
         });
 
         function updateEmailSubject() {
-            const selectedCenter = document.querySelector('input[name="center"]:checked');
+            const selectedCenters = Array.from(document.querySelectorAll('input[name="center"]:checked'))
+                .map(checkbox => centersInfo[checkbox.value].fullName);
+            
             const selectedCentersText = document.getElementById('selected-centers-text');
             
-            if (selectedCenter) {
-                const centerInfo = centersInfo[selectedCenter.value];
-                selectedCentersText.textContent = centerInfo.fullName;
-                
-                const partnersInfo = document.createElement('div');
-                partnersInfo.className = 'partners-info';
-                partnersInfo.innerHTML = `
-                    <div class="tips" style="margin-top: 20px;">
-                        <strong>למי לשלוח עדכונים?</strong>
-                        <p>${centerInfo.partners}</p>
-                    </div>
-                `;
-                
-                // מחיקת מידע קודם אם קיים
-                const existingInfo = document.querySelector('.partners-info');
-                if (existingInfo) {
-                    existingInfo.remove();
-                }
-                
-                // הוספת המידע החדש
-                document.querySelector('.email-subject-wrapper').appendChild(partnersInfo);
+            if (selectedCenters.length > 0) {
+                selectedCentersText.textContent = selectedCenters.join(', ');
             } else {
                 selectedCentersText.textContent = '-- בחר מרכז --';
-                const existingInfo = document.querySelector('.partners-info');
-                if (existingInfo) {
-                    existingInfo.remove();
-                }
+            }
+
+            // עדכון תזכורת השותפים
+            const appreciationCard = document.querySelector('.category-container:last-of-type .card');
+            let reminderDiv = appreciationCard.querySelector('.partners-reminder');
+            if (!reminderDiv) {
+                reminderDiv = document.createElement('div');
+                reminderDiv.className = 'partners-reminder';
+                appreciationCard.appendChild(reminderDiv);
+            }
+
+            if (selectedCenters.length > 0) {
+                const selectedPartners = Array.from(document.querySelectorAll('input[name="center"]:checked'))
+                    .map(checkbox => centersInfo[checkbox.value].partners)
+                    .join('\n');
+                reminderDiv.innerHTML = `<strong>תזכורת:</strong> אל תשכח להודות לשותפים הבאים:\n${selectedPartners}`;
+            } else {
+                reminderDiv.innerHTML = '';
             }
         }
 
@@ -1261,160 +1191,162 @@
             });
         });
 
-        // הוספת פונקציות מעקב אחר התקדמות
+        // מחליף את הקוד הקיים של progressTracker
         const progressTracker = {
-            sections: {
-                'center-selection': { completed: false, weight: 10 },
-                'team-member-name': { completed: false, weight: 15 },
-                'monthly-overview': { completed: false, weight: 15 },
-                'activities-events': { completed: false, weight: 15 },
-                'group-a-progress': { completed: false, weight: 5 },
-                'group-b-progress': { completed: false, weight: 5 },
-                'group-c-progress': { completed: false, weight: 5 },
-                'skills-tools': { completed: false, weight: 10 },
-                'future-plans': { completed: false, weight: 10 },
-                'appreciation-thanks': { completed: false, weight: 10 }
-            },
-            
-            updateProgress(sectionId, isCompleted) {
-                if (this.sections[sectionId]) {
-                    this.sections[sectionId].completed = isCompleted;
-                    this.calculateTotalProgress();
-                }
-            },
-            
-            calculateTotalProgress() {
-                let totalWeight = 0;
-                let completedWeight = 0;
+            updateSectionProgress(sectionId) {
+                const step = document.querySelector(`.progress-step[data-section="${sectionId}"]`);
+                if (!step) return;
+
+                const percentageElement = step.querySelector('.progress-percentage');
+                if (!percentageElement) return;
+
+                let percentage = 0;
                 
-                for (const [id, section] of Object.entries(this.sections)) {
-                    totalWeight += section.weight;
-                    if (section.completed) {
-                        completedWeight += section.weight;
-                    }
-                }
-                
-                const percentage = Math.round((completedWeight / totalWeight) * 100);
-                this.updateProgressUI(percentage);
-            },
-            
-            updateProgressUI(percentage) {
-                const steps = document.querySelectorAll('.progress-step');
-                const stepPercentages = [25, 50, 75, 100]; // אחוזים לכל שלב
-                
-                steps.forEach((step, index) => {
-                    const stepThreshold = stepPercentages[index];
-                    const percentageElement = step.querySelector('.progress-percentage');
+                switch(sectionId) {
+                    case 'center-selection':
+                        percentage = document.querySelectorAll('input[name="center"]:checked').length > 0 ? 100 : 0;
+                        break;
                     
-                    if (percentage >= stepThreshold) {
-                        step.classList.add('completed');
-                        step.classList.remove('active');
-                        percentageElement.textContent = '100%';
-                    } else if (percentage > (index > 0 ? stepPercentages[index - 1] : 0)) {
-                        step.classList.add('active');
-                        step.classList.remove('completed');
-                        const stepProgress = Math.min(100, Math.round(
-                            ((percentage - (index > 0 ? stepPercentages[index - 1] : 0)) / 
-                            (stepThreshold - (index > 0 ? stepPercentages[index - 1] : 0))) * 100
-                        ));
-                        percentageElement.textContent = `${stepProgress}%`;
-                    } else {
-                        step.classList.remove('completed', 'active');
-                        percentageElement.textContent = '0%';
-                    }
-                });
+                    case 'team-section':
+                        const nameField = document.getElementById('team-member-name');
+                        const descField = document.getElementById('team-member-description');
+                        if (nameField?.value && descField?.value) {
+                            percentage = 100;
+                        } else if (nameField?.value || descField?.value) {
+                            percentage = 50;
+                        }
+                        break;
+                    
+                    case 'monthly-section':
+                        const monthlyField = document.getElementById('monthly-overview');
+                        percentage = monthlyField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'activities-section':
+                        const activitiesField = document.getElementById('activities-events');
+                        percentage = activitiesField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'progress-section':
+                        const groupA = document.getElementById('group-a-progress')?.value;
+                        const groupB = document.getElementById('group-b-progress')?.value;
+                        const groupC = document.getElementById('group-c-progress')?.value;
+                        const filledGroups = [groupA, groupB, groupC].filter(val => val).length;
+                        percentage = Math.round((filledGroups / 3) * 100);
+                        break;
+                    
+                    case 'skills-section':
+                        const skillsField = document.getElementById('skills-tools');
+                        percentage = skillsField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'goals-section':
+                        const futurePlansField = document.getElementById('future-plans');
+                        percentage = futurePlansField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'collaboration-section':
+                        const collaborationsField = document.getElementById('community-collaborations');
+                        percentage = collaborationsField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'success-section':
+                        const successStoriesField = document.getElementById('success-stories');
+                        percentage = successStoriesField?.value ? 100 : 0;
+                        break;
+                    
+                    case 'appreciation-section':
+                        const appreciationField = document.getElementById('appreciation-thanks');
+                        percentage = appreciationField?.value ? 100 : 0;
+                        break;
+                    case 'initiatives-section':
+                        const initiativesField = document.getElementById('unique-initiatives');
+                        percentage = initiativesField?.value ? 100 : 0;
+                        break;
+                }
+
+                // עדכון האחוזים והמראה
+                percentageElement.textContent = `${percentage}%`;
+                if (percentage === 100) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (percentage > 0) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
             }
         };
 
-        // עדכון פונקציות השמירה הקיימות
-        function addSaveEvent(buttonId, sectionId) {
-            document.getElementById(buttonId)?.addEventListener('click', () => {
-                const content = document.getElementById(sectionId)?.value;
-                if (content && content.trim().length > 0) {
-                    progressTracker.updateProgress(sectionId, true);
-                    showToast('התוכן נשמר בהצלחה! 🎉');
-                } else {
-                    progressTracker.updateProgress(sectionId, false);
-                    showToast('נא למלא תכן לפני השמירה', 'warning');
-                }
-            });
-        }
-
-        // הוספת מעקב אחר בחירת מרכז
+        // מעקב אחר שינויים בבחירת מרכז
         document.querySelectorAll('input[name="center"]').forEach(checkbox => {
             checkbox.addEventListener('change', () => {
-                const isAnyChecked = Array.from(document.querySelectorAll('input[name="center"]:checked')).length > 0;
-                progressTracker.updateProgress('center-selection', isAnyChecked);
+                progressTracker.updateSectionProgress('center-selection');
             });
         });
 
-        // הוספת כל אירועי השמירה
-        addSaveEvent('save-team-member', 'team-member-name');
-        addSaveEvent('save-monthly-overview', 'monthly-overview');
-        addSaveEvent('save-activities-events', 'activities-events');
-        addSaveEvent('save-group-a-progress', 'group-a-progress');
-        addSaveEvent('save-group-b-progress', 'group-b-progress');
-        addSaveEvent('save-group-c-progress', 'group-c-progress');
-        addSaveEvent('save-skills-tools', 'skills-tools');
-        addSaveEvent('save-future-plans', 'future-plans');
-        addSaveEvent('save-appreciation-thanks', 'appreciation-thanks');
+        // מעקב אחר שינויים בשדות טקסט
+        document.getElementById('team-member-name')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('team-section');
+        });
 
-        // עדכון ה-HTML של סרגל ההתקדמות
-        document.querySelector('.progress-bar').innerHTML = `
-            <div class="progress-step active">
-                <div class="step-icon">📋</div>
-                <div class="step-label">בחירת מרכז</div>
-                <div class="progress-percentage">0%</div>
-            </div>
-            <div class="progress-step">
-                <div class="step-icon">👥</div>
-                <div class="step-label">פרטי הצוות</div>
-                <div class="progress-percentage">0%</div>
-            </div>
-            <div class="progress-step">
-                <div class="step-icon">📊</div>
-                <div class="step-label">סקירה חודשית</div>
-                <div class="progress-percentage">0%</div>
-            </div>
-            <div class="progress-step">
-                <div class="step-icon">🎯</div>
-                <div class="step-label">יעדים ותוכניות</div>
-                <div class="progress-percentage">0%</div>
-            </div>
-        `;
+        document.getElementById('team-member-description')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('team-section');
+        });
 
-        // פונקציה חדשה לבקשת גישה
-        function requestAccess(centerId) {
-            const centerInfo = centersInfo[centerId];
-            const userEmail = prompt('אנא הזן את כתובת המייל שלך לבקשת גישה:');
-            
-            if (userEmail) {
-                // כאן אפשר לשלוח את הבקשה לשרת או להפנות לטופס
-                window.open(`mailto:your-admin-email@example.com?subject=בקשת גישה לתיק מרכז ${centerInfo.fullName}&body=אנא אשר לי גישה לתיק המרכז.%0D%0A%0D%0Aמייל: ${userEmail}%0D%0Aמרכז: ${centerInfo.fullName}`);
-                
-                showToast('בקשת הגישה נשלחה בהצלחה! נחזור אליך בהקדם', 'info');
-            }
-        }
+        document.getElementById('monthly-overview')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('monthly-section');
+        });
 
-        // נוסיף פונקציה לאימות משתמש
-        function authenticateUser(centerId) {
-            const centerInfo = centersInfo[centerId];
-            const userEmail = prompt('אנא הזן את כתובת המייל שלך:');
-            
-            // כאן צריך להיות מערך של מיילים מורשים לכל מרכז
-            const authorizedEmails = {
-                'jerusalem': ['manager1@example.com', 'staff1@example.com'],
-                'beer-sheva': ['manager2@example.com', 'staff2@example.com'],
-                // ... וכן הלאה
-            };
-            
-            if (userEmail && authorizedEmails[centerId]?.includes(userEmail)) {
-                // אם המייל מורשה, מציגים את הקישור
-                window.open(centerInfo.centerFile, '_blank');
-            } else {
-                showToast('אין לך הרשאות גישה לתיק זה. אנא פנה למנהל המערכת', 'warning');
-            }
-        }
+        // הוסף מאזינים נוספים לפי הצורך...
+
+        // הוספת מאזינים לשאר השדות
+        document.getElementById('activities-events')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('activities-section');
+        });
+
+        document.getElementById('group-a-progress')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('progress-section');
+        });
+
+        document.getElementById('group-b-progress')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('progress-section');
+        });
+
+        document.getElementById('group-c-progress')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('progress-section');
+        });
+
+        document.getElementById('skills-tools')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('skills-section');
+        });
+
+        document.getElementById('unique-initiatives')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('goals-section');
+        });
+
+        document.getElementById('future-plans')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('goals-section');
+        });
+
+        // הוספת מאזינים לשדות החדשים
+        document.getElementById('community-collaborations')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('collaboration-section');
+        });
+
+        document.getElementById('success-stories')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('success-section');
+        });
+
+        document.getElementById('appreciation-thanks')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('appreciation-section');
+        });
+
+        document.getElementById('unique-initiatives')?.addEventListener('input', () => {
+            progressTracker.updateSectionProgress('initiatives-section');
+        });
     </script>
 </body>
 </html>
+
